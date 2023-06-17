@@ -1,5 +1,3 @@
-%global libinput_overrides %{_sysconfdir}/libinput/local-overrides.quirks
-
 Name:           keyd
 Version:        2.4.3
 Release:        0
@@ -9,7 +7,6 @@ URL:            https://github.com/rvaiya/keyd
 Source0:        https://github.com/rvaiya/keyd/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  gcc
 BuildRequires:  python-xlib-python3
-
 Provides: %{name} = %{version}-%{release}
 
 %description
@@ -38,13 +35,12 @@ install -m755 -d %{buildroot}%{_bindir} %{buildroot}%{_datadir}/%{name}/layouts 
 install -m755 bin/* %{buildroot}%{_bindir}
 install -m644 data/keyd.compose %{buildroot}%{_datadir}/%{name}
 install -m644 layouts/* %{buildroot}%{_datadir}/%{name}/layouts
-install -m644 %{name}.service %{buildroot}%{_unitdir}
+install -m644 keyd.service %{buildroot}/usr/lib/systemd/user/
 
 %files
-%{_bindir}/*
-%dir %{_datadir}/%{name}
-%{_datadir}/%{name}/*
-%{_unitdir}/%{name}.service
+/usr/bin/*
+/usr/share/keyd/*
+/usr/lib/systemd/user/keyd.service
 
 %changelog
 # based on https://github.com/clearfraction/gstreamer-libav
