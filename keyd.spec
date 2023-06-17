@@ -6,7 +6,7 @@ License:        MIT
 URL:            https://github.com/rvaiya/keyd
 Source0:        https://github.com/rvaiya/keyd/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  gcc
-BuildRequires:  python-xlib-python3
+BuildRequires:  pypi-python_xlib-python3
 Provides: %{name} = %{version}-%{release}
 
 %description
@@ -14,7 +14,6 @@ This is a VA-API implementation that uses VDPAU as a backend.
 
 %prep
 %setup -n %{name}-%{version}
-
 
 %build
 export LANG=C.UTF-8
@@ -44,4 +43,3 @@ install -m644 keyd.service %{buildroot}/usr/lib/systemd/user/
 
 %changelog
 # based on https://github.com/clearfraction/gstreamer-libav
-
