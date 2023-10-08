@@ -30,6 +30,7 @@ make %{?_smp_mflags}
 
 
 %install
+groupadd keyd
 install -m755 -d %{buildroot}%{_bindir} %{buildroot}%{_datadir}/%{name}/layouts %{buildroot}%{_unitdir}
 install -m755 bin/* %{buildroot}%{_bindir}
 install -m644 data/keyd.compose %{buildroot}%{_datadir}/%{name}
