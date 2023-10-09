@@ -36,8 +36,7 @@ install -m644 data/keyd.compose %{buildroot}%{_datadir}/%{name}
 install -m644 layouts/* %{buildroot}%{_datadir}/%{name}/layouts
 install -D -m644 keyd.service -t %{buildroot}/usr/lib/systemd/user/
 sed -i 's|/usr/bin/keyd|/opt/3rd-party/bundles/clearfraction/usr/bin/keyd|g' %{buildroot}/usr/lib/systemd/user/keyd.service
-echo -e '#!/bin/sh' >> %{buildroot}/usr/bin/keyd-postinstall.sh
-echo -e "sudo groupadd keyd\nsudo ln -s /opt/3rd-party/bundles/clearfraction/usr/lib/systemd/user/keyd.service /usr/lib/systemd/system/keyd.service" >> %{buildroot}/usr/bin/keyd-postinstall.sh
+echo -e '#!/bin/sh\nsudo groupadd keyd\nsudo ln -s /opt/3rd-party/bundles/clearfraction/usr/lib/systemd/user/keyd.service /usr/lib/systemd/system/keyd.service' >> %{buildroot}/usr/bin/keyd-postinstall.sh
 
 %files
 /usr/bin/*
