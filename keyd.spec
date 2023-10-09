@@ -10,7 +10,7 @@ BuildRequires:  pypi-python_xlib-python3
 Provides: %{name} = %{version}-%{release}
 
 %description
-This is a VA-API implementation that uses VDPAU as a backend.
+A key remapping daemon for Linux.
 
 %prep
 %setup -n %{name}-%{version}
@@ -30,14 +30,14 @@ make %{?_smp_mflags}
 
 
 %install
-groupadd keyd
 install -m755 -d %{buildroot}%{_bindir} %{buildroot}%{_datadir}/%{name}/layouts %{buildroot}%{_unitdir}
 install -m755 bin/* %{buildroot}%{_bindir}
 install -m644 data/keyd.compose %{buildroot}%{_datadir}/%{name}
 install -m644 layouts/* %{buildroot}%{_datadir}/%{name}/layouts
 install -D -m644 keyd.service -t %{buildroot}/usr/lib/systemd/user/
 sed -i 's|/usr/bin/keyd|/opt/3rd-party/bundles/clearfraction/usr/bin/keyd|g' %{buildroot}/usr/lib/systemd/user/keyd.service
-
+echo -e '#!/bin/sh' >> %{buildroot}/usr/bin/keyd-postinstall.sh
+echo -e "sudo groupadd keyd\nsudo ln -s /opt/3rd-party/bundles/clearfraction/usr/lib/systemd/user/keyd.service /usr/lib/systemd/system/keyd.service" >> %{buildroot}/usr/bin/keyd-postinstall.sh
 
 %files
 /usr/bin/*
@@ -45,4 +45,4 @@ sed -i 's|/usr/bin/keyd|/opt/3rd-party/bundles/clearfraction/usr/bin/keyd|g' %{b
 /usr/lib/systemd/user/keyd.service
 
 %changelog
-# based on https://github.com/clearfraction/gstreamer-libav
+# based on https://github.com/clearfraction/keyd
