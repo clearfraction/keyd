@@ -36,6 +36,7 @@ install -m755 bin/* %{buildroot}%{_bindir}
 install -m644 data/keyd.compose %{buildroot}%{_datadir}/%{name}
 install -m644 layouts/* %{buildroot}%{_datadir}/%{name}/layouts
 install -D -m644 keyd.service -t %{buildroot}/usr/lib/systemd/user/
+sed -i 's|/usr/bin/keyd|/opt/3rd-party/bundles/clearfraction/usr/bin/keyd|g' %{buildroot}/usr/lib/systemd/user/keyd.service
 
 
 %files
