@@ -1,5 +1,5 @@
 Name:           keyd
-Version:        2.4.3
+Version:        2.5.0
 Release:        0
 Summary:        A key remapping daemon for Linux
 License:        MIT
